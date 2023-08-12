@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  glpi:
+    image: joaobruno/glpi-arm64:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - glpi_data:/var/www/html/glpi
+
+  db:
+    image: mariadb:10.5
+    environment:
+      MYSQL_ROOT_PASSWORD: Ch@ng3P@ssw0rd
+      MYSQL_DATABASE: glpi
+      MYSQL_USER: glpi
+      MYSQL_PASSWORD: Ch@ng3P@ssw0rd
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  glpi_data:
+  db_data:
